@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>EatSome24</title>
+         <!-- ? BOOTSTRAP -->
+   <link
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+   rel="stylesheet"
+   integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+   crossorigin="anonymous"
+ />
+ <link rel="stylesheet"  href="index.css" />
+
+    </head>
+    <body>
+        <div id="root">Not Rendered</div>
+        <!-- Here type="module" is important otberwise after running the cmd 
+             npx parcel index.htm it will give error 
+             Browser scripts cannot have imports or exports.
+             Becaue they ar saying I don't know import / export then I need to tell them this is not normal js
+             file it is module file so we will add type="module"  -->
+        <script type="module" src="App.js"></script>
+    </body>
+</html>
