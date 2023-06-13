@@ -197,3 +197,10 @@ img {
     background: #00000012 !important;
     height: 200px;
 }
+
+.login-btn {
+  background: none;
+    outline: none;
+    color: #fff;
+    border: none;
+}
