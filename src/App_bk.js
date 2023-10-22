@@ -20,7 +20,7 @@ import appLogo from '../public/images/logo.jpg';
 //% Default import
 import HeaderComponent from './component/Header'; //% OR import HeaderComponent from './component/Header.js'
 import FooterComponent from './component/Footer'
-import ResturantListComponent from './component/ResturantList'
+import RestaurantListComponent from './component/ResturantList'
 import { RESTURANT_ARRAY } from './constnant';
 
 //% Named import
@@ -63,7 +63,7 @@ const AppLayout = () =>{
     return (
         <React.Fragment>
             <HeaderComponent />
-            <ResturantListComponent />
+            <RestaurantListComponent />
             <FooterComponent />
         </React.Fragment>
     )

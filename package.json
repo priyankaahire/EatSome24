@@ -10,16 +10,25 @@
   "author": "Priyanka ahire",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.5.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.17.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "buffer": "^5.7.1",
     "parcel": "^2.8.2",
     "process": "^0.11.10"
   },
   "browserslist": [
     "last 1 chrome version"
-  ]
+  ],
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:1234",
+      "secure": false
+    }
+  }
 }

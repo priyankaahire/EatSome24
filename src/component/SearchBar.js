@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { RESTURANT_ARRAY } from "../constnant";
+import { RESTURANT_ARRAY } from "../utils/constnant";
 
 
 
 function searchList() {
     return (
-        <ResturantListComponent filteredPersons={filteredItems} />
+        <RestaurantListComponent filteredPersons={filteredItems} />
     );
 }
 
 const SearchBar = ({onSearchChange}) => {
  
+   
     //% REACT is one way data binding BUT if want to change value of input i.e allow to edit the input box value then need
     //% onChange and IT is taking a function which is basically CALLBACK function
     //% i.e Whenever input is change value 
@@ -22,6 +23,8 @@ const SearchBar = ({onSearchChange}) => {
     const serachTextLocal = "kfc";
     //% useState HOOK (HOOKS are othing normal function)
     const [searchInputText, setSearchtext] = useState() //# TO CREATE THE STATE VARIBALE WITH DEFAULT VALUE 
+  
+    //% Once input box value is chnaged then we have to update the state of that varibale that's why we required handleChange handler which update the state with new text
     const handleChange = e => {
         setSearchtext(e.target.value);
         onSearchChange(e)
@@ -50,6 +53,10 @@ const SearchBar = ({onSearchChange}) => {
                 placeholder="Search.." 
                 name="search"
                 onChange={handleChange}
+                    //% Whenever state varible update, react triggers a reconciliation cycle (rerender the component) But it only chnaged the value which is different that periovous
+                    //% because it always compared 2 virual dom (Privious and current one)
+                    //% But this comparision done by React Fiber
+    
                />
             </form>
         </div>
