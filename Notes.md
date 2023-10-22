@@ -73,3 +73,5 @@ If somthing start from the "use" keyword its mean it is hook it is decided by re
 ### Children Route
   If we want to display everyting inside the body we don't want to change the 
 
+### Link
+   Link is wrapper over the <a> tag so in DOM link is not avilable it is replace by <a> and React DOM keeping a track of this Link

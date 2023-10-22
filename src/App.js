@@ -62,7 +62,7 @@ const appRouter = createBrowserRouter([
                 element:<RestaurantDeatilsComponent /> //~% Dyanamic Routing
             }
         ],
-        // element:<ErrorComponent />
+        errorElement:<ErrorComponent />
     },
    
 ])

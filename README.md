@@ -26,7 +26,7 @@ https://reactrouter.com/en/main
         -useEffect()
 
 ### Routing in web apps
-        - Client Side Routing: It is not loadin the page it is just loading that Component using <Link />
+        - Client Side Routing: It is not loadin the page it is just loading that Component using <Link /> (Link is wrapper over the <a> tag and React DOM keeping a track of this Link)
         - Server Side Routing: You have contact.html, in <a> use pass the path and once you click it reload the whole page, send request to the server and fecth the data and load on the browser It callled     
 
 
