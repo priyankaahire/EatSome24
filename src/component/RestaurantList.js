@@ -90,7 +90,7 @@ export default RestaurantListComponent = (props) => {
             <h2>Top restaurant chains in Bangalore</h2>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-8 mx-4 my-8 items-start list-none p-0">
+        <div className="grid grid-cols-5 gap-3 mx-4 my-8 items-start list-none p-0">
           {filteredRestaurants?.map((restaurant) => {
             return (
               <Link

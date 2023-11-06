@@ -29,15 +29,15 @@ const RestaurantCardComponent = ({ id, name, cuisines, cloudinaryImageId, avgRat
                         <div className='px-2'>
                             <div title={name} className="font-bold text-lg text-black ellipsis-text">{name}</div>
                         </div>
-                      
-                        <div className='px-2 grid gap-4 grid-rows-1 grid-cols-1 items-center'>
-                            <div className='font-bold text-base '><StarIcon color="success"/>{avgRating}<span className='text-lg text-center'> . </span>{slaString}</div>
-                        </div>
-                        <div className='px-2 grid gap-2 items-center'>
+                        <div className='px-2 items-center'>
                             <div title={cuisines.join(", ")} className='text-sm text-slate-600 ellipsis-text'>{cuisines.join(", ")}</div>
-                            <div className='text-slate-600'><p>{costForTwo}</p></div>
                         </div>
-                        <div className='px-2 divide-y divide-slate-200'>
+                        <div className='px-2 grid gap-1 grid-rows-1 grid-cols-4 items-center'>
+                            <div className='text-white text-xs bg-green-800  w-8/12 text-center'><StarIcon sx={{fontSize:"12px"}} />{avgRating}</div>
+                            <div className='text-slate-600 '>{slaString}</div>
+                            <div className='text-slate-600 col-span-2 text-end'>{costForTwo}</div>
+                        </div>
+                        <div className='px-2 divide-y divide-slate-600 '>
                             <span className="text-sm text-slate-600 ellipsis-text">50% off | Use WELCOME50</span>
                         </div>
                     </div>

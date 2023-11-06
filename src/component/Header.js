@@ -23,7 +23,7 @@ const HeaderComponent = ({ handleClick }) => {
   //% But if I want to navigate without reload used "Link" component
   return (
     <header>
-      <div className="flex h-60 relative mb-4 p-25 border-10 bg-repeat border-solid border-black text-white bg-origin-content bg-[url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')] justify-content-between">
+      <div className="flex h-60 relative mb-4 p-25 border-10 bg-repeat border-solid border-black text-white bg-origin-content justify-content-between bg-[url('https://b.zmtcdn.com/web_assets/81f3ff974d82520780078ba1cfbd453a1583259680.png')]">
         <div className="">
           <Title />
         </div>
