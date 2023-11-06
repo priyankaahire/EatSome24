@@ -1,6 +1,7 @@
 export default Shimmer = () => {
     return (
         <div className="resturant-container">
+          <div><div className="shimmer-title"><h1 ></h1></div></div>
           <div className="resturant-card">
           {Array(10)
             .fill("")

@@ -1,5 +1,5 @@
 
-import React, {createContext, createElement, useState} from 'react';
+import React, {createContext, createElement, useState, lazy, Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 import appLogo from '../public/images/logo.jpg';
 
@@ -13,7 +13,13 @@ import { ContactComponent } from './component/Contact';
 import { ErrorComponent } from './component/Error';
 import { RestaurantDeatilsComponent } from './component/RestaurantDetails';
 
+// import Grocery from "./component/Grocery"
+
 const MyContext = createContext();
+//% Using lazy i will call my Grocery on demand i will call this
+//% lazy: come with callback param adn it use import function with path as value
+const Grocery = lazy(() => import('./component/Grocery'))
+
 
 const AppLayout = () =>{
     const [serachText, setSearchText] = useState();
@@ -60,6 +66,14 @@ const appRouter = createBrowserRouter([
             {
                 path:"/restaurant-details/:resId",
                 element:<RestaurantDeatilsComponent /> //~% Dyanamic Routing
+            },
+            {
+                path:'/grocery',
+                element:(
+                    <Suspense fallback={<h1>Loading....</h1>}>
+                        <Grocery />
+                    </Suspense>
+                )
             }
         ],
         errorElement:<ErrorComponent />

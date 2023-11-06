@@ -1,6 +1,9 @@
-import { Link } from 'react-router-dom'
-import { IMG_CDN_URL } from '../utils/constnant'
 
+
+// import { StartSharp } from '@mui/icons-material';
+import StarIcon from '@mui/icons-material/Star';
+import { IMG_CDN_URL } from '../utils/constnant';
+// import StarIcon from '@material-ui/icons/Star';
 //# We can used PROPS i.e passed param as props and get the value EX.props.restaurant?.data?.name
 //# otherwise use destrucing the OBJECT like {restaurant}
 
@@ -12,33 +15,35 @@ import { IMG_CDN_URL } from '../utils/constnant'
 //! This will won't work <ResturantCard restaurant={RESTURANT_ARRAY[0].data}  />
 
 //% One MOre Import is ES6 SPREAD OPERATORS <ResturantCard {...RESTURANT_ARRAY[0].data} />
-const RestaurantCardComponent = ({ id, name, cuisines, cloudinaryImageId, avgRating, costForTwoString }) => {
+const RestaurantCardComponent = ({ id, name, cuisines, cloudinaryImageId, avgRating, costForTwo, sla }) => {
+    const {slaString, lastMileTravelString} = sla 
     return (
-            <div className=''>
-                    <div className='resturant-card-body'>
-                        <div>
-                            <div className='image-continer'>
-                                <img height="160" alt="Avatar" src={IMG_CDN_URL + cloudinaryImageId} />
-                            </div>
+            < >
+                <div className="eatsome-card">
+                    <div>
+                        <div className='p-3 rounded-2xl'>
+                            <img height="160" alt="Avatar" src={IMG_CDN_URL + cloudinaryImageId} />
                         </div>
-                        <div>
-                            <div className='resturant-info'>
-                                <div className="resu-name">{id}</div>
-                                <div className="resu-name">{name}</div>
-                                <div className='food-info'>{cuisines.join(", ")}</div>
-                            </div>
-                            <div className='other-info'>
-                                <div className='rating-info'>{avgRating}</div>
-                                <div className='price-info'>{costForTwoString}</div>
-                            </div>
-                            <div className='offer-info'>
-                                <span className='offer-icon'></span>
-                                <span className='offer-details'>50% off | Use WELCOME50</span>
-                            </div>
-                        </div>
-
                     </div>
-            </div>
+                    <div >
+                        <div className='px-2'>
+                            <div title={name} className="font-bold text-lg text-black ellipsis-text">{name}</div>
+                        </div>
+                      
+                        <div className='px-2 grid gap-4 grid-rows-1 grid-cols-1 items-center'>
+                            <div className='font-bold text-base '><StarIcon color="success"/>{avgRating}<span className='text-lg text-center'> . </span>{slaString}</div>
+                        </div>
+                        <div className='px-2 grid gap-2 items-center'>
+                            <div title={cuisines.join(", ")} className='text-sm text-slate-600 ellipsis-text'>{cuisines.join(", ")}</div>
+                            <div className='text-slate-600'><p>{costForTwo}</p></div>
+                        </div>
+                        <div className='px-2 divide-y divide-slate-200'>
+                            <span className="text-sm text-slate-600 ellipsis-text">50% off | Use WELCOME50</span>
+                        </div>
+                    </div>
+
+                </div>
+            </>
     )
 }
 
