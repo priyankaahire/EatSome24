@@ -1,21 +1,24 @@
 import RestaurantCardComponent from "./RestaurantCard";
 import { SWIGGY_URL } from "../utils/constnant";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-// import mockData from './data/mock.json';
+import { useSearch } from "../contexts/HomeContext";
+
 //! Instead of passing index wise data we can use FOR loop but in FUNCTINAL programing we can use used MAP not an LOOP
 //! <ResturantCard {...RESTURANT_ARRAY[0].data} />
 //! <ResturantCard {...RESTURANT_ARRAY[1].data}/>
 //! <ResturantCard {...RESTURANT_ARRAY[2].data}/> */
 
-export default RestaurantListComponent = (props) => {
+export default RestaurantListComponent = () => {
   const [listOfAllRestaurants, setListOfAllRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [resData, setResData] = useState(null);
   const onlineStatus = useOnlineStatus();
+  const { searchText } = useSearch();
+  const ResturantCardPromoted = withPromotedLabel(RestaurantCardComponent);
   //* As in when page load called the data and fill the page
   //% Load Api: 1. called the API              | 2. Render the page
   //%           |   300 ms take to get api     |  500 ms take to render = 800ms take
@@ -36,11 +39,11 @@ export default RestaurantListComponent = (props) => {
         await axios.get(`${SWIGGY_URL}`).then((response) => {
           const json = response;
           setListOfAllRestaurants(
-            json?.data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+            json?.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
               ?.restaurants
           );
           setFilteredRestaurants(
-            json?.data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
+            json?.data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
               ?.restaurants
           );
           setResData(json?.data);
@@ -57,15 +60,16 @@ export default RestaurantListComponent = (props) => {
   //! if serch again then that time you resturant list 2 item so difintly it will not going to return you result
   //! so instead modify allResturan state will modify the serch resurant state and while serching always serch from the all Resturan state
   useEffect(() => {
-    const filteredItems = props?.serachText
+    console.log("serach text", searchText);
+    const filteredItems = searchText?.trim()
       ? listOfAllRestaurants.filter((restaurant) =>
           restaurant.info.name
-            .toLowerCase()
-            .includes(props.serachText.toLowerCase())
+            ?.toLowerCase()
+            ?.includes(searchText?.toLowerCase())
         )
       : listOfAllRestaurants;
     setFilteredRestaurants(filteredItems);
-  }, [props?.serachText]);
+  }, [searchText]);
 
   if (onlineStatus === false)
     return (
@@ -86,18 +90,20 @@ export default RestaurantListComponent = (props) => {
         }}
       >
         <div className="">
-          <div className="block">
-            <h2>Top restaurant chains in Bangalore</h2>
+          <div className="block bg-black text-white p-1 dark:bg-white text-black">
+            <h2>Top Restaurant Chains In Bangalore</h2>
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-3 mx-4 my-8 items-start list-none p-0">
+        <div className="grid grid-cols-5 gap-3 mx-4 my-8 items-start list-none p-0 text-gree">
           {filteredRestaurants?.map((restaurant) => {
             return (
               <Link
                 key={restaurant.info.id}
                 to={"/restaurant-details/" + restaurant.info.id}
               >
-                <RestaurantCardComponent {...restaurant.info} />
+                {restaurant?.info?.id ? <ResturantCardPromoted resData={restaurant.info} /> : (
+                  <RestaurantCardComponent {...restaurant.info} />
+                )}
               </Link>
             );
           })}
@@ -105,4 +111,20 @@ export default RestaurantListComponent = (props) => {
       </div>
     </>
   );
+};
+
+//Higher order Xonponent
+//input RestaurentCard = > RestaurentCardPromtoted
+
+export const withPromotedLabel = (RestaurantCard) => {
+  //props basically received the props which we passed in resData and same data we have to passed to as props to card
+  const RestaurentCardPromtoted = (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white m-1 p-1 rounded-sm text-xs capitalize">Promoted</label>
+        <RestaurantCardComponent {...props?.resData} />
+      </div>
+    );
+  };
+  return RestaurentCardPromtoted;
 };

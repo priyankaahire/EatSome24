@@ -1,3 +1,7 @@
+## Documentation
+   https://react.dev/learn/
+
+
 ### Question 
 
 In below Line we are managing the state 
@@ -281,7 +285,7 @@ export default UserClass
         after doing that will faced "suspence error" so lazy loading suggest bind you componnet insid the 
         <Suspense fallback={<h1>Loading....</h1>}><Grocery /></Suspense>
         
-### CSS Framework  
+### CSS Framework : Episode-10 | Jo Dikhta Hai, Vo Bikta Hai
 - Index css
 - SASS SCSS
 - style component: we have to create the component: https://styled-components.com/docs
@@ -298,19 +302,68 @@ export default UserClass
      - Start your build process: Run `npx parcel src/index.html`
      - Start using Tailwind in your project:  <link href="./index.css" rel="stylesheet">
 
-     ### postcssrc
+# postcssrc
      WHT postcssrc Required....???
      using this your parcel( Bundler) read the tailwind from that
 
-     ### tailwind.config
-       Inside the "content" we have provide the configuration. This "content" array take the all list of configuration 
-       file in what are the place we are using the tailwind css ex. inside the .css, .htm. .jsx, .html
-       content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
+# tailwind.config
+        Inside the "content" we have provide the configuration. This "content" array take the all list of configuration 
+        file in what are the place we are using the tailwind css ex. inside the .css, .htm. .jsx, .html
+        content: ["./src/**/*.{html,js,ts,jsx,tsx}"],
 
-       ### Advantag
-          - complex UI can create
-          - If u add aclass only that time it will add into the CSS file it will not blout you bundle
-          - It will to remove redent css how ?????: If 10 developer working on diff moudle if they want to craete green button then they will create there own green button class other wise we that to create common css and every one has knowledge of that common file to avoid such sitution but still it will not achivable with this approach
-          BUT........If we used tailwind css and every used "bg-green" at the time of bundling there only on class in css file for "backgrouncolor:green" so that's why it is more powerful
-          - Also we can write media queries like ex. className="bg-pink-100 sm: bg-yellow-50 lg:bg-green-50
-          - If my device grater than sm then use yellow otherwise pink and on a larger device green
+# Advantag
+        - complex UI can create
+        - If u add aclass only that time it will add into the CSS file it will not blout you bundle
+        - It will to remove redent css how ?????: If 10 developer working on diff moudle if they want to craete green button then they will create there own green button class other wise we that to create common css and every one has knowledge of that common file to avoid such sitution but still it will not achivable with this approach
+        BUT........If we used tailwind css and every used "bg-green" at the time of bundling there only on class in css file for "backgrouncolor:green" so that's why it is more powerful
+        - Also we can write media queries like ex. className="bg-pink-100 sm: bg-yellow-50 lg:bg-green-50
+        - If my device grater than sm then use yellow otherwise pink and on a larger device green
+
+### Episode-11 | Data is new Oil
+# Higher order componenet: 
+        ex. IF we want to display some card with some label like offer, Promoted then what will do will we will write some function which take as component and return the component
+        It is function which takes as component and inhance that component and return the new Component
+        It take the existing the component and modify it and returning that component
+        Example:
+        If want to display the Promoted Resturant or with Promoted label in Resturant list so in that case we will write one more function 
+        Higher order function
+        * Input - RestaurantCard => RestaturantCardPromoted
+
+        1. React component 2 layer: Data Layer and UI Layer
+        and UI layer is powered by data layer that data layer is consist of Props, state, local varibales , {} inside the javascript html. If you know to maintain your data in React application will be very fast and UI layer is consist of JSX the code inside retun
+
+        2. How to manage Data Layer:
+        Example to understand the this layer is, If we click on Restaurant Details we have here diff-diff sections and each section has diff-diff items
+        Ex Recommended, Newly Added, Salds, Low Fat Foods this are section and each section has some list of items
+
+# Controll and Uncontroll Component
+        https://react.dev/learn/sharing-state-between-components#controlled-and-uncontrolled-components
+        RestaurantCategory  componnet has a controll of RestaurantCategory so in that case "RestaurantCategory" is controlling component and if handling show and hide index logic inside the RestaurantCategory then in that case it un-controll component
+
+# Lifting the sate
+        https://react.dev/learn/sharing-state-between-components#lifting-state-up-by-example
+        once we expand the one state another should be collapse: exmaple in details page all type of item we are expanding and collpasing
+        but in that case once we expand on category another should collapse but this only happende if we give a control of componnet to the parent component. 
+# use Context (Props drealing) :
+        pass the data from parent to least child restDetails -> restCategory -> restitem this but problmatic because data is  very crusial part of data. But if is is not good way then how should i pass the the data or want to access the data then react has super power like useContext using this we can achive
+        so we can use "context" we can set the data at global level and we can use that data in any place
+        use Context
+
+        `Can we access this loggedIn info inside the AboutUs.js` ???? ..We can not because it is Class based component inside class based we dont have hooks
+        `<UserContext.Consumer>
+         {(data)=>console.log(data)}
+        </UserContext.Consumer>` 
+        using consumer we can access the user info because once you create the context rect give us the power of consumer and With help of JSX we can call the callback function to access to theta data
+        Even, If we want pass some userInfo from the root level like app where we called all api and returning the User details then we have to use `Context provider` this provide by react we will wrap outer whole app into that 
+
+        Q. can we userd <UserContext.Consumer> multiple times?? : Yes we can used multiple times
+
+        Q. what is diff between redux store and context (Both are for the data manuplication inside app)
+            => If you doing samll application you don't Redux it is not part of react it is seperate library 
+            In case context, if you want access cart data, user data, item data so in that case we have to create diff diff context to manage this data like, userContext, cartContext, itemContext
+        https://react.dev/reference/react/useContext#usecontext
+        Ex. Once we expand then after clicking on same text it should collapse then we will achive it by using "context"
+
+### Episode-12 | Lets' Build Our store
+
+    

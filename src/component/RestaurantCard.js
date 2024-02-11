@@ -15,7 +15,7 @@ import { IMG_CDN_URL } from '../utils/constnant';
 //! This will won't work <ResturantCard restaurant={RESTURANT_ARRAY[0].data}  />
 
 //% One MOre Import is ES6 SPREAD OPERATORS <ResturantCard {...RESTURANT_ARRAY[0].data} />
-const RestaurantCardComponent = ({ id, name, cuisines, cloudinaryImageId, avgRating, costForTwo, sla }) => {
+const RestaurantCardComponent = ({ id, name, cuisines, cloudinaryImageId, avgRating, costForTwo, sla, promoted }) => {
     const {slaString, lastMileTravelString} = sla 
     return (
             < >
@@ -27,7 +27,7 @@ const RestaurantCardComponent = ({ id, name, cuisines, cloudinaryImageId, avgRat
                     </div>
                     <div >
                         <div className='px-2'>
-                            <div title={name} className="font-bold text-lg text-black ellipsis-text">{name}</div>
+                            {promoted?.toString()}<div title={name} className="font-bold text-lg text-black ellipsis-text">{name}</div>
                         </div>
                         <div className='px-2 items-center'>
                             <div title={cuisines.join(", ")} className='text-sm text-slate-600 ellipsis-text'>{cuisines.join(", ")}</div>

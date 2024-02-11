@@ -1,39 +1,45 @@
 
-import React, {createContext, createElement, useState, lazy, Suspense} from 'react';
+import React, {createContext, createElement, useState, lazy, Suspense, useEffect} from 'react';
 import ReactDOM from 'react-dom/client';
-import appLogo from '../public/images/logo.jpg';
 
-import HeaderComponent from './component/Header'; 
-import FooterComponent from './component/Footer'
-import RestaurantListComponent from './component/RestaurantList'
-import { RESTURANT_ARRAY } from './utils/constnant';
+
+import HeaderComponent from '../component/Header'; 
+import FooterComponent from '../component/Footer'
+import RestaurantListComponent from '../component/RestaurantList'
+import { RESTURANT_ARRAY } from '../utils/constnant';
 import {RouterProvider, createBrowserRouter, Outlet, useOutletContext} from "react-router-dom"
-import { AboutComponent } from './component/About';
-import { ContactComponent } from './component/Contact';
-import { ErrorComponent } from './component/Error';
-import { RestaurantDeatilsComponent } from './component/RestaurantDetails';
+// import { AboutComponent } from '../component/About';
+import { ContactComponent } from '../component/Contact';
+import { ErrorComponent } from '../component/Error';
+import { RestaurantDeatilsComponent } from '../component/RestaurantDetails';
+import {HomeProvider} from '../contexts/HomeContext'
+import UserContext from "../contexts/UserContext";
 
-// import Grocery from "./component/Grocery"
 
 const MyContext = createContext();
 //% Using lazy i will call my Grocery on demand i will call this
 //% lazy: come with callback param adn it use import function with path as value
-const Grocery = lazy(() => import('./component/Grocery'))
-
+const Grocery = lazy(() => import('../component/Grocery'))
+const About   = lazy(() => import("../component/About"))
 
 const AppLayout = () =>{
-    const [serachText, setSearchText] = useState();
-    const context = useOutletContext()
-    const handleClick = e => {
-        setSearchText(e.target.value);
-    };
+    const [userName, setUserName] = useState()
+    //authentication
+    useEffect(() =>{
+        // make Api call and send username and password
+        const data = {
+            name: "Priyanka Ahire",
+        }
+        setUserName(data.name)
+    }, [])
     return (
-        <MyContext.Provider value={serachText}>
-            <HeaderComponent handleClick={handleClick} />
-            {/* <RestaurantListComponent serachText={serachText}/> */}
-            <Outlet  />
-            <FooterComponent />
-        </MyContext.Provider>
+        <UserContext.Provider value={{loggedInUser:userName}}>
+            <HomeProvider >
+                <HeaderComponent />
+                <Outlet  />
+                <FooterComponent />
+            </HomeProvider>
+        </UserContext.Provider>
     )
 }
 //% createBrowserRouter: Content the array of object with path and second with the which componnet you want to load
@@ -57,7 +63,11 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:"/about",
-                element:<AboutComponent />
+                element:(
+                    <Suspense >
+                        <About />
+                    </Suspense>
+                )
             },
             {
                 path:"/contact",
