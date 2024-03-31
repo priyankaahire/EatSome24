@@ -1,8 +1,15 @@
 
 // import { IMG_CDN_URL} from "../utils/constnant";
+import { addItem } from "../utils/cartSlice";
 import {CDN_URL} from "../utils/constnant"
+import {useDispatch} from 'react-redux'
 export default ItemList = ({ items }) => {
-  const handleAddItem = (item) => {};
+
+  const dispatchCart = useDispatch();
+  const handleAddItem = (item) => {
+      //Dispatch the action
+      dispatchCart(addItem(item))
+  };
   return (
     <div>
       {items.map((item) => (

@@ -14,7 +14,9 @@ import { ErrorComponent } from '../component/Error';
 import { RestaurantDeatilsComponent } from '../component/RestaurantDetails';
 import {HomeProvider} from '../contexts/HomeContext'
 import UserContext from "../contexts/UserContext";
-
+import {Provider} from 'react-redux'; //It is Bride btween app and redux
+import appStore from '../utils/appStore';
+import CartComponent from '../component/Cart';
 
 const MyContext = createContext();
 //% Using lazy i will call my Grocery on demand i will call this
@@ -33,13 +35,16 @@ const AppLayout = () =>{
         setUserName(data.name)
     }, [])
     return (
-        <UserContext.Provider value={{loggedInUser:userName}}>
+        <Provider store={appStore}>
+            <UserContext.Provider value={{loggedInUser:userName}}>
             <HomeProvider >
                 <HeaderComponent />
                 <Outlet  />
                 <FooterComponent />
             </HomeProvider>
         </UserContext.Provider>
+        </Provider>
+       
     )
 }
 //% createBrowserRouter: Content the array of object with path and second with the which componnet you want to load
@@ -76,6 +81,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"/restaurant-details/:resId",
                 element:<RestaurantDeatilsComponent /> //~% Dyanamic Routing
+            },
+            {
+                path:"cart",
+                element:<CartComponent />
             },
             {
                 path:'/grocery',

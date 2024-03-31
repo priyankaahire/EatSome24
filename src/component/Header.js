@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { useSearch } from '../contexts/HomeContext';
 import UserContext from "../contexts/UserContext";
+import {useSelector} from 'react-redux'
 
 const Title = () => (
   <a className="text-white" href="/">
@@ -26,6 +27,9 @@ const HeaderComponent = ({ onSearch }) => {
   //* we can use the context use react hook useContex
   const {loggedInUser} = useContext(UserContext)
   //! Dont use the <a></a>  <li><a href='/contact'>Contact</a></li> because once u click it will load the whole page
+
+  //* Sunscribing to the store using the selector
+  const cartItems  = useSelector((store)=>store.cart.items)
   //% But if I want to navigate without reload used "Link" component
   return (
     <header>
@@ -69,7 +73,9 @@ const HeaderComponent = ({ onSearch }) => {
               <li className="p-3">
                 <Link to="/contact" onClick={handleLinkClick}>Contact</Link>
               </li>
-              <li className="p-3">Cart</li>
+              <li>
+              <Link to='/cart' className="p-3">Cart ({cartItems})</Link>
+              </li>
               <li
                 className="p-3 bg-none outline-none text-white border-none"
                 onClick={() =>

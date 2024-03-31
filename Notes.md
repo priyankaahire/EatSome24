@@ -365,5 +365,90 @@ export default UserClass
         Ex. Once we expand then after clicking on same text it should collapse then we will achive it by using "context"
 
 ### Episode-12 | Lets' Build Our store
+Redux is not maindatory
+        1. Redux: https://redux.js.org/introduction/getting-started
+        2. Redux toolkit (RtK): https://redux-toolkit.js.org/introduction/getting-started
+        Feature: After adding a item into cart cound and info should be added into the cart by using Redux
 
-    
+# Redux
+        - Install reduxtookit (@reduxjs/toolkit & react-redux)
+        - Build our store
+        - Connect our store to our app
+        - Slice (cart slice)
+        - Dispatch(action)
+        - Selector
+# Connect our store to our app
+        Q. why configureStore it is from @reduxjs/toolkit && Provider from the 'react-redux' ??
+        => because store creation it the responsibility of reduxjs toolkit and provide that to react it is responsibilty of react
+        Q. How we provid eit to the application
+        =>  By using Provider wrap top of the App and we will provide it from there
+                <Provider store={appStore}>
+                <UserContext.Provider value={{loggedInUser:userName}}>
+                <HomeProvider >
+                        <HeaderComponent />
+                        <Outlet  />
+                        <FooterComponent />
+                </HomeProvider>
+                </UserContext.Provider>
+                Using the we are wrapping our app with store it just like context
+
+# Slice (cart slice): 
+        Inside the reducers object all function nothing but small small API call it is basically modify the state of your store
+        ex. const cartSlice = createSlice({
+                                        name:'Cart',
+                                        initialState:{
+                                                items:[]
+                                        },
+                                        reducers:{
+                                                addItem: (state, action) => {
+                                                        //Modify the state
+                                                        state.item.push(action.payload)
+                                                },
+                                                clearcart:(state)=>{state.item=[]},
+                                                removeItem: (state, action) => {
+                                                        state.item.pop()
+                                                }
+                                        }
+                                })
+
+# Display the Cart
+        Will use the `Selector` which is nothing but the hook inside the React and `useSelector` which is react use selector from the react-redux
+        so it has `useDispatch` we can dispatch the action
+
+        Interview Question
+        If your using "useSelector" so in that case make sure we are subscribing right items otherwise it will create the big issue of rendering and performace
+
+        exmaple
+        In cart component we do
+                const cartItems = useSelector((store) => store) 
+                const items = cartItems.cart.items
+        instead of 
+                const cartItems = useSelector((store) => store.cart.items);
+
+                Why because we are subscribing the Store if any thing happend in store but not in store.cart.items but in that case of CartComponent definitly going to called so to avoid such unecessary rendering need to subscribe right items.
+
+                In appStore.js we have"reducer" which one reducer for Whole app and other "reducers" 
+                Slice has multiple reducer function i.e addItem:(state, item)=>{state.items.push(action.payload)}
+
+                reducers is nothing but combination of small reducer i.e appReducer is the comibation of small redcer like cartReducer
+
+                Vanialla(older) Redux => DON'T MUTATE STATE and returning the state was menditory
+                (i.e we can't change we have to craete the copy of that we have to changes)
+                const newState = [...state]
+                newState.items.push(action.payload)
+                return newState;
+                Genrally we modified the state directly 
+
+                $In Redux toolkit, we can mutate the state directly
+                we HAVE to mutate the state directly
+                state.items.push(action.payload);
+
+                Read cartSlice.js....
+                 
+# Immer
+https://immerjs.github.io/immer/
+
+
+
+
+   
