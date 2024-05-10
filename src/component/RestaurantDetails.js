@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import Shimmer from "./Shimmer"
 
 import { useParams } from "react-router-dom";
-import useRestaurantDeatils from "../utils/useRestaturantDetails";
+import useRestaurantDeatils from "../Hooks/useRestaturantDetails";
 import RestaurantCategory from "./RestaurantCategory";
 //% Make the server call and get the real data of resaturan data we need useStae hook
 export const RestaurantDeatilsComponent = () => {

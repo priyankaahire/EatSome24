@@ -5,10 +5,7 @@ import ReactDOM from 'react-dom/client';
 
 import HeaderComponent from '../component/Header'; 
 import FooterComponent from '../component/Footer'
-import RestaurantListComponent from '../component/RestaurantList'
-import { RESTURANT_ARRAY } from '../utils/constnant';
 import {RouterProvider, createBrowserRouter, Outlet, useOutletContext} from "react-router-dom"
-// import { AboutComponent } from '../component/About';
 import { ContactComponent } from '../component/Contact';
 import { ErrorComponent } from '../component/Error';
 import { RestaurantDeatilsComponent } from '../component/RestaurantDetails';
@@ -17,6 +14,7 @@ import UserContext from "../contexts/UserContext";
 import {Provider} from 'react-redux'; //It is Bride btween app and redux
 import appStore from '../utils/appStore';
 import CartComponent from '../component/Cart';
+import MainComponent from '../component/Main';
 
 const MyContext = createContext();
 //% Using lazy i will call my Grocery on demand i will call this
@@ -64,7 +62,7 @@ const appRouter = createBrowserRouter([
         children:[
             {
                 path:"/",
-                element:<RestaurantListComponent />
+                element:<MainComponent />
             },
             {
                 path:"/about",

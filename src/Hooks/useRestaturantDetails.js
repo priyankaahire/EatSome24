@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react";
 import axios from "axios";
-import { MENU_API } from "./constnant"
+import { MENU_API } from "../utils/constnant"
 const useRestaurantDeatils = (resId) => {
     const [restInfo, setRestInfo] = useState(null);
 

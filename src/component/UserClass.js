@@ -1,6 +1,6 @@
 
 import React from "react"
-import useProfile from "../utils/useProfile"
+import useProfile from "../Hooks/useProfile"
 import axios from "axios"
 import { GIT_PROFILE_URL } from "../utils/constnant"
 class UserClass extends React.Component {

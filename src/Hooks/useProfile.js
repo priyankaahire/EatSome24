@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { GIT_PROFILE_URL } from "./constnant"
+import { GIT_PROFILE_URL } from "../utils/constnant"
 
 const useProfile = async() => {
     const [profileData, setProfileData] = useState()

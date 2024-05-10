@@ -1,7 +1,7 @@
-import User from "./User"
-import UserClass from "./UserClass"
-import React from "react"
-import UserContext from "../contexts/UserContext"
+import User from "./User";
+import UserClass from "./UserClass";
+import React from "react";
+import UserContext from "../contexts/UserContext";
 
 // export const AboutComponent = () => {
 //     return (
@@ -19,38 +19,41 @@ import UserContext from "../contexts/UserContext"
 //~* Class base component to understand the LifeCycle of React
 
 class AboutComponent extends React.Component {
+  constructor() {
+    super();
+    console.log("Parent constructor");
+  }
 
-    constructor() {
-        super();
-        console.log("Parent constructor")
-    }
-
-    componentDidMount() {
-        console.log("Parent componentDidMount")
-        //% API Called inside this: Because it is called after rendering (mounting) component
-
-    }
-    render() {
-        console.log("Parent render")
-        return (
-        <>
-            <div>
-                <h1>About</h1>
-                <div>
-                    LoggedIn User
-                    <UserContext.Consumer>
-                        {({loggedInUser})=><h1 className="text-xl font-bold">{loggedInUser}</h1>}
-                    </UserContext.Consumer>
-                </div>
-                <h2>Let's talk about EatSome24</h2>
-                <User name={"Priyanka  (Funcation Component)"} location={"Pune"} email={"psahire01@gmail.com"}/>
-                {/* <UserClass name={"Priyanka  Ahire (Class Component)"} location={"Pune"} email={"psahire01@gmail.com"}/> */}
-                {/* <UserClass name={"Hadeel  Faries (Class Component)"} location={"Isreal"} email={"Hadeel@gmail.com"}/> */}
-            </div>
-        </>
-        )
-    }
-
+  componentDidMount() {
+    console.log("Parent componentDidMount");
+    //% API Called inside this: Because it is called after rendering (mounting) component
+  }
+  render() {
+    console.log("Parent render");
+    return (
+      <>
+        <div>
+          <h1>About</h1>
+          <div>
+            LoggedIn User
+            <UserContext.Consumer>
+              {({ loggedInUser }) => (
+                <h1 className="text-xl font-bold">{loggedInUser}</h1>
+              )}
+            </UserContext.Consumer>
+          </div>
+          <h2>Let's talk about EatSome24</h2>
+          <User
+            name={"Priyanka  (Funcation Component)"}
+            location={"Pune"}
+            email={"psahire01@gmail.com"}
+          />
+          {/* <UserClass name={"Priyanka  Ahire (Class Component)"} location={"Pune"} email={"psahire01@gmail.com"}/> */}
+          {/* <UserClass name={"Hadeel  Faries (Class Component)"} location={"Isreal"} email={"Hadeel@gmail.com"}/> */}
+        </div>
+      </>
+    );
+  }
 }
 
 export default AboutComponent;
@@ -84,5 +87,3 @@ export default AboutComponent;
 
     - Parent componentDidMount
 */
-
- 
