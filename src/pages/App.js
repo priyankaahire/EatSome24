@@ -10,13 +10,12 @@ import { ContactComponent } from '../component/Contact';
 import { ErrorComponent } from '../component/Error';
 import { RestaurantDeatilsComponent } from '../component/RestaurantDetails';
 import {HomeProvider} from '../contexts/HomeContext'
-import UserContext from "../contexts/UserContext";
 import {Provider} from 'react-redux'; //It is Bride btween app and redux
 import appStore from '../utils/appStore';
 import CartComponent from '../component/Cart';
 import MainComponent from '../component/Main';
+import LoginComponent from '../component/Login';
 
-const MyContext = createContext();
 //% Using lazy i will call my Grocery on demand i will call this
 //% lazy: come with callback param adn it use import function with path as value
 const Grocery = lazy(() => import('../component/Grocery'))
@@ -34,13 +33,9 @@ const AppLayout = () =>{
     }, [])
     return (
         <Provider store={appStore}>
-            <UserContext.Provider value={{loggedInUser:userName}}>
-            <HomeProvider >
                 <HeaderComponent />
                 <Outlet  />
                 <FooterComponent />
-            </HomeProvider>
-        </UserContext.Provider>
         </Provider>
        
     )
@@ -74,7 +69,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:"/contact",
-                element:<ContactComponent />
+                element:(<Suspense fallback={<h1>Loading....</h1>}><ContactComponent /></Suspense>)
             },
             {
                 path:"/restaurant-details/:resId",
@@ -83,6 +78,10 @@ const appRouter = createBrowserRouter([
             {
                 path:"cart",
                 element:<CartComponent />
+            },
+            {
+                path:'login',
+                element:<LoginComponent />
             },
             {
                 path:'/grocery',

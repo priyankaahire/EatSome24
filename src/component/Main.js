@@ -9,8 +9,6 @@ const MainComponent = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const [searchText, setSearchText] = useState(""); //# TO CREATE THE STATE VARIBALE WITH DEFAULT VALUE
   const [errorMessage, setErrorMessage] = useState("");
-
-  console.log(allRestaurants);
   const filterData = (searchText, data) => {
     const filResData = data.filter((resaturant) =>
       resaturant.info.name?.toLowerCase()?.includes(searchText?.toLowerCase())
@@ -35,8 +33,8 @@ const MainComponent = () => {
   };
   if (!allRestaurants) return null;
   return (
-    <main className="main-container flex-1 overflow-y-auto mt-10">
-      <div className="search-container flex justify-center item-center mt-24 mb-5 mx-auto">
+    <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]">
+      <div className="search-container flex justify-center item-center mb-5 mx-auto">
         <div className="w-1/2 flex items-center h-full border border-solid rounded-lg">
           <div className="w-full border-r-0.5 h-full">
             <form action="/action_page.php">

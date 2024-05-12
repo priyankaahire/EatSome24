@@ -10,10 +10,10 @@
   "author": "Priyanka ahire",
   "license": "ISC",
   "dependencies": {
-    "@emotion/react": "11.11.1",
-    "@emotion/styled": "11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "5.14.13",
-    "@mui/material": "^5.14.13",
+    "@mui/material": "^5.15.17",
     "@reduxjs/toolkit": "^2.2.0",
     "axios": "1.5.1",
     "react": "18.2.0",

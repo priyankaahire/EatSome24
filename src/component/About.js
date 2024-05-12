@@ -1,7 +1,7 @@
+import useLoginStorage from "../Hooks/useLoginStorage";
 import User from "./User";
 import UserClass from "./UserClass";
 import React from "react";
-import UserContext from "../contexts/UserContext";
 
 // export const AboutComponent = () => {
 //     return (
@@ -22,6 +22,7 @@ class AboutComponent extends React.Component {
   constructor() {
     super();
     console.log("Parent constructor");
+    this.loggedInUser = useLoginStorage("username")
   }
 
   componentDidMount() {
@@ -36,11 +37,9 @@ class AboutComponent extends React.Component {
           <h1>About</h1>
           <div>
             LoggedIn User
-            <UserContext.Consumer>
-              {({ loggedInUser }) => (
-                <h1 className="text-xl font-bold">{loggedInUser}</h1>
-              )}
-            </UserContext.Consumer>
+              
+            {  this.loggedInUser && <h1 className="text-xl font-bold">{this.oggedInUser}</h1> }
+             
           </div>
           <h2>Let's talk about EatSome24</h2>
           <User

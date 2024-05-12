@@ -4,7 +4,7 @@ import { LINKEDIN_PROFILE, PROFILE_NAME } from "../utils/constnant";
 const FooterComponent = () => {
     const year = new Date().getFullYear();
     return (
-      <footer className="flex justify-center space-x-4">
+      <footer className="flex justify-center space-x-4 bottom-0 py-3 px-5 shadow-lg m-3">
         Created By
         <i className=""></i>
         <a
