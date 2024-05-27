@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import useResData from "../Hooks/useResListData";
-import { SWIGGY_URL } from "../utils/constnant";
-import RestaurantListComponent from "./RestaurantList";
+import { SWIGGY_URL } from "../public/common/constnant";
+import RestaurantListComponent from "./Menu/RestaurantList";
 import Shimmer from "./Shimmer";
 
 const MainComponent = () => {

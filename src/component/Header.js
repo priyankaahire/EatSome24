@@ -4,21 +4,22 @@ import useOnlineStatus from "../Hooks/useOnlineStatus";
 import { useSelector } from "react-redux";
 import useLoginStorage from "../Hooks/useLoginStorage";
 import { Avatar } from "@mui/material";
-import { ShoppingCartOutlined, StayPrimaryLandscape } from "@mui/icons-material";
+import { Person2Outlined, ShoppingCartOutlined, StayPrimaryLandscape } from "@mui/icons-material";
+import { APPLICATION_LOGO } from "../public/common/constnant";
 
 const Title = () => (
   <Link className="text-black" href="/">
-    <h2>EatSome24</h2>
+    <h2>{APPLICATION_LOGO}</h2>
   </Link>
 );
 const HeaderComponent = ({ onSearch }) => {
   const handleLinkClick = (path) => {
   };
-  const [username] = useLoginStorage("username")
+  const [loggedInUser] = useLoginStorage("username")
   const onlineStatus = useOnlineStatus();
   //* Sunscribing to the store using the selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(username)
+  console.log(loggedInUser)
   //% But if I want to navigate without reload used "Link" component
 
   return (
@@ -27,7 +28,7 @@ const HeaderComponent = ({ onSearch }) => {
         <Title />
         <nav>
           <ul className="flex list-none">
-            <li className="p-3">Online Status: {onlineStatus ? "✅" : "🔴"}</li>
+            {/* <li className="p-3">Online Status: {onlineStatus ? "✅" : "🔴"}</li> */}
             <li className="p-3" onClick={handleLinkClick}>
               <Link className="hover:text-primary"  to="/">Home</Link>
             </li>
@@ -43,9 +44,11 @@ const HeaderComponent = ({ onSearch }) => {
               <Link className="hover:text-primary" to="/cart"><ShoppingCartOutlined /> Cart {cartItems ? `(${cartItems})` : null}</Link>
             </li>
             <li className="p-3">
-              {username ?   
-              <Avatar className="text-white" sx={{ width: 40, height: 40, background: '#FFA500' }}>{username.charAt(0).charAt(0).toUpperCase() + username.charAt(0).slice(1)}</Avatar>
-              :<Link className="hover:text-primary"  to='/login'>Sign In</Link> }
+              {loggedInUser ?   
+              <Avatar title={loggedInUser} className="text-white" sx={{ width: 40, height: 40}}>{loggedInUser.charAt(0).charAt(0).toUpperCase() + loggedInUser.charAt(0).slice(1)}</Avatar>
+              :<><Link className="hover:text-primary"  to='/login'><Person2Outlined />Sign In</Link>
+              {/* <span className={onlineStatus ? "text-green" : "text-red"}>{" "}●</span>*/}</>
+              }
             </li>
           </ul>
         </nav>

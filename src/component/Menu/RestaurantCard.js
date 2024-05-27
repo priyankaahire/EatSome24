@@ -1,5 +1,5 @@
 import StarIcon from "@mui/icons-material/Star";
-import { IMG_CDN_URL } from "../utils/constnant";
+import { IMG_CDN_URL } from "../../public/common/constnant";
 
 const RestaurantCardComponent = ({
   id,
@@ -45,7 +45,7 @@ const RestaurantCardComponent = ({
               <h4>•</h4>
               <h4>{slaString}</h4>
               <h4>•</h4>
-              <h4>{costForTwo ?? "₹200 for two"}</h4>
+              <h4>{costForTwoMessage ?? "₹200 for two"}</h4>
             </span>
             <div className="w-1/2 mb-2 divide-y divide-slate-600 ">
               <span className="text-sm text-slate-600 ellipsis-text">

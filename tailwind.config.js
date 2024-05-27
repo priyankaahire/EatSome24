@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        primary: {
-          DEFAULT: '#FFA500',
-          dark: '#FF8C00', // Darker shade of orange
-          light: '#FFD700', // Lighter shade of orange
-        }
+        'primary': '#FFA500'
+        // {
+        //   DEFAULT: '#FFA500',
+        //   dark: '#FF8C00', // Darker shade of orange
+        //   light: '#FFD700', // Lighter shade of orange
+        // }
       }
     },
   },

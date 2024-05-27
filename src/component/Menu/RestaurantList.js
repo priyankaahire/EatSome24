@@ -1,6 +1,6 @@
 import RestaurantCardComponent from "./RestaurantCard";
 import { Link } from "react-router-dom";
-import useOnlineStatus from "../Hooks/useOnlineStatus";
+import useOnlineStatus from "../../Hooks/useOnlineStatus";
 
 export const RestaurantListComponent = ({filteredRestaurantData}) => {
   const onlineStatus = useOnlineStatus();

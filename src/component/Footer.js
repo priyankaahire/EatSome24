@@ -1,4 +1,4 @@
-import { LINKEDIN_PROFILE, PROFILE_NAME } from "../utils/constnant";
+import { APPLICATION_LOGO, LINKEDIN_PROFILE, PROFILE_NAME } from "../public/common/constnant";
 
 // Footer component for footer section
 const FooterComponent = () => {
@@ -6,18 +6,16 @@ const FooterComponent = () => {
     return (
       <footer className="flex justify-center space-x-4 bottom-0 py-3 px-5 shadow-lg m-3">
         Created By
-        <i className=""></i>
         <a
           href={LINKEDIN_PROFILE}
           target="_blank"
           title={`${PROFILE_NAME}'s Linkedin Profile`}
         >
           @{PROFILE_NAME}
-        </a>
-        <i className=""></i>
+        </a>{""}
           {year}
           <strong>
-            Eat<span>Some</span>
+            {APPLICATION_LOGO}
           </strong>
       </footer>
     );

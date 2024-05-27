@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { SWIGGY_URL } from '../utils/constnant';
+import { SWIGGY_URL } from '../public/common/constnant';
 const useResData = (API_URL) => {
     const [allRestaurants, setAllRestaurants] = useState([]);
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);

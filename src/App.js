@@ -3,23 +3,23 @@ import React, {createContext, createElement, useState, lazy, Suspense, useEffect
 import ReactDOM from 'react-dom/client';
 
 
-import HeaderComponent from '../component/Header'; 
-import FooterComponent from '../component/Footer'
+import HeaderComponent from './component/Header'; 
+import FooterComponent from './component/Footer'
 import {RouterProvider, createBrowserRouter, Outlet, useOutletContext} from "react-router-dom"
-import { ContactComponent } from '../component/Contact';
-import { ErrorComponent } from '../component/Error';
-import { RestaurantDeatilsComponent } from '../component/RestaurantDetails';
-import {HomeProvider} from '../contexts/HomeContext'
+import { ContactComponent } from './component/Contact';
+import { ErrorComponent } from './component/Error';
+import { RestaurantMenuComponent } from './component/Menu/RestaurantMenu';
+import {HomeProvider} from './contexts/HomeContext'
 import {Provider} from 'react-redux'; //It is Bride btween app and redux
-import appStore from '../utils/appStore';
-import CartComponent from '../component/Cart';
-import MainComponent from '../component/Main';
-import LoginComponent from '../component/Login';
+import appStore from './utils/appStore';
+import CartComponent from './component/Cart';
+import MainComponent from './component/Main';
+import LoginComponent from './component/Login';
 
 //% Using lazy i will call my Grocery on demand i will call this
 //% lazy: come with callback param adn it use import function with path as value
-const Grocery = lazy(() => import('../component/Grocery'))
-const About   = lazy(() => import("../component/About"))
+const Grocery = lazy(() => import('./component/Grocery'))
+const About   = lazy(() => import("./component/About"))
 
 const AppLayout = () =>{
     const [userName, setUserName] = useState()
@@ -73,7 +73,7 @@ const appRouter = createBrowserRouter([
             },
             {
                 path:"/restaurant-details/:resId",
-                element:<RestaurantDeatilsComponent /> //~% Dyanamic Routing
+                element:<RestaurantMenuComponent /> //~% Dyanamic Routing
             },
             {
                 path:"cart",

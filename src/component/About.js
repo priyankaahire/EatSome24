@@ -38,7 +38,7 @@ class AboutComponent extends React.Component {
           <div>
             LoggedIn User
               
-            {  this.loggedInUser && <h1 className="text-xl font-bold">{this.oggedInUser}</h1> }
+            {  this.loggedInUser && <h1 className="text-xl font-bold">{this.loggedInUser}</h1> }
              
           </div>
           <h2>Let's talk about EatSome24</h2>
