@@ -1,4 +1,4 @@
-import { shimmer_card_unit } from "../public/common/constnant";
+import { shimmer_card_unit } from "../Common/constnant";
 
 export const CardShimmer = () => {
   const menuCards = Array.from(

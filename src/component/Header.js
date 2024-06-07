@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import useLoginStorage from "../Hooks/useLoginStorage";
 import { Avatar } from "@mui/material";
 import { Person2Outlined, ShoppingCartOutlined, StayPrimaryLandscape } from "@mui/icons-material";
-import { APPLICATION_LOGO } from "../public/common/constnant";
+import { APPLICATION_LOGO } from "./Common/constnant";
 
 const Title = () => (
   <Link className="text-black" href="/">

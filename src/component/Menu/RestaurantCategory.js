@@ -3,10 +3,12 @@
 
 import { useEffect, useState, useRef } from "react";
 import ItemList from "./ItemList";
-import { IMG_CDN_URL } from "../../public/common/constnant";
+import { IMG_CDN_URL, ITEM_IMG_CDN_URL } from "../Common/constnant";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../utils/cartSlice";
-import ImageWithFallback from "../../public/common/ImageFallback";
+import ImageWithFallback from "../Common/ImageFallback";
+import VegetarianSVG from "../Common/VegetarianSVG";
+import NonVegetarianSVG from "../Common/NonVegetarianSVG";
 
 export default RestaurantCategory = ({ item, setShowIndex, showItems }) => {
   //! const [showItems, setShowItems] = useState(false)
@@ -34,6 +36,7 @@ export default RestaurantCategory = ({ item, setShowIndex, showItems }) => {
     <>
       <div className="flex p-3">
         <div className="w-9/12 nline-block justify-between cursor-pointer menuitem-details">
+       {item?.isVeg ? <VegetarianSVG />  : <NonVegetarianSVG />}
           <span className="text-lg font-bold text-slate-600">{item?.name}</span>
           <div className="py-2">
             <span>
@@ -66,10 +69,10 @@ export default RestaurantCategory = ({ item, setShowIndex, showItems }) => {
             classStyle="w-full h-full rounded-xl"
             /> */}
             <ImageWithFallback
-              src={IMG_CDN_URL + item.imageId}
+              src={ITEM_IMG_CDN_URL + item.imageId}
               fallbackSrc="default-error.jpg"
               alt={item.imageId}
-              classStyle="w-full h-full rounded-xl"
+              className="w-full h-full rounded-xl"
             />
             <div className="relative left-1/2 bottom-7 -translate-x-2/4	 z-[1]">
               <div className="relative ">

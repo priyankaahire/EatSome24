@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ImageWithFallback = ({ src, fallbackSrc, alt, classStyle, cssStyle}) => {
+const ImageWithFallback = ({ src, fallbackSrc, alt, className, cssStyle}) => {
   const [error, setError] = useState(false);
 
   const handleImageError = () => {
@@ -9,7 +9,7 @@ const ImageWithFallback = ({ src, fallbackSrc, alt, classStyle, cssStyle}) => {
 
   return (
     <img
-      className={classStyle}
+      className={className}
       src={error ? fallbackSrc : src}
       onError={handleImageError}
       alt={alt}

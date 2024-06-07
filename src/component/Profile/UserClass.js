@@ -1,8 +1,8 @@
 
 import React from "react"
-import useProfile from "../Hooks/useProfile"
+import useProfile from "../../Hooks/useProfile"
 import axios from "axios"
-import { GIT_PROFILE_URL } from "../public/common/constnant"
+import { GIT_PROFILE_URL } from "../../public/common/constnant"
 class UserClass extends React.Component {
     //% Recived the props inside the Class Base Component using constructor
     constructor(props) {

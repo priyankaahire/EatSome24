@@ -1,6 +1,6 @@
 import { useState, useEffect} from "react";
 import axios from "axios";
-import { MENU_TYPE_KEY, OFFER_KEY1, OFFER_KEY2, RESTAURANT_TYPE_KEY } from "../public/common/constnant";
+import { MENU_TYPE_KEY, OFFER_KEY1, OFFER_KEY2, RESTAURANT_TYPE_KEY } from "../component/Common/constnant";
 const useRestaurantMenu = (resId, menu_api) => {
     const [restInfo, setRestInfo] = useState(null);
     const [menuItems, setMenuItems] = useState([]);
@@ -21,7 +21,6 @@ const useRestaurantMenu = (resId, menu_api) => {
                 console.error(err);
             } else {
                 const json = response?.data
-console.log(json)
                 // set restaurant data
                
                 const restaurantData = json?.data?.cards

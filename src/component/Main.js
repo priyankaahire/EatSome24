@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import useResData from "../Hooks/useResListData";
-import { SWIGGY_URL } from "../public/common/constnant";
+import { SWIGGY_URL } from "./Common/constnant";
 import RestaurantListComponent from "./Menu/RestaurantList";
-import Shimmer from "./Shimmer";
-
+import Shimmer from "./Menu/Shimmer";
+import WhatInYourMind from "./Menu/WhatInYourFind";
+import TopRestaurantCity from "./Menu/TopRestaurantCity";
 const MainComponent = () => {
-  const [allRestaurants, FilterRes] = useResData(SWIGGY_URL);
+  const [allRestaurants, FilterRes, whatInYourMindItem, TopRestaurant] =
+    useResData(SWIGGY_URL);
   const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const [searchText, setSearchText] = useState(""); //# TO CREATE THE STATE VARIBALE WITH DEFAULT VALUE
   const [errorMessage, setErrorMessage] = useState("");
+  const scrollContainerRef = useRef(null);
+
   const filterData = (searchText, data) => {
     const filResData = data.filter((resaturant) =>
       resaturant.info.name?.toLowerCase()?.includes(searchText?.toLowerCase())
@@ -31,6 +35,16 @@ const MainComponent = () => {
       setFilteredRestaurants(restaurants);
     }
   };
+  const handleShowMore = () => {
+    console.log("On show More click")
+    setFilteredRestaurants(allRestaurants);
+  }
+
+  useEffect(()=>{
+   if(filteredRestaurants?.length > 0) {
+      filteredRestaurants.slice
+   }
+  }, [])
   if (!allRestaurants) return null;
   return (
     <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]">
@@ -62,17 +76,41 @@ const MainComponent = () => {
           {errorMessage}
         </div>
       )}
+      {/* What in Your mind*/}
+      {whatInYourMindItem &&  whatInYourMindItem.length > 0 &&
+        <div className="menu-container flex justify-center items-center mt-4">
+         <div className="menu-content w-[85%] mt-8">
+            <WhatInYourMind items={whatInYourMindItem} key={'fgh'}/>
+         </div>
+       </div>
+      }
+
+      {/* Top Resturant Menu */}
+      {TopRestaurant?.length === 0 && TopRestaurant?.length === 0 ? (
+        <Shimmer />
+      ) : (
+        <div className="topitem-container flex justify-center items-center mt-4">
+           <div className="topitem-content w-[85%] mt-8 px-0 py-4">
+           <TopRestaurantCity items={TopRestaurant} />
+           </div>
+        </div>
+      )}
+
+      {/* Restaurant List*/}
       {allRestaurants?.length === 0 && FilterRes?.length === 0 ? (
         <Shimmer />
       ) : (
-        <div className="restaurant-container flex">
+        <div className="restaurant-container flex justify-center items-center mt-4">
           <div
+          className="px-0 py-4"
             style={{
               marginLeft: "calc(5% + 35px)",
               marginRight: "calc(5% + 35px)",
             }}
           >
             <RestaurantListComponent
+            key={`hhjj`}
+              onShowMoreClick={handleShowMore}
               filteredRestaurantData={
                 filteredRestaurants === null
                   ? allRestaurants

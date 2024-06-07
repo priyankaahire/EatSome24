@@ -1,7 +1,7 @@
 
 // import { IMG_CDN_URL} from "../utils/constnant";
 import { addItem } from "../../utils/cartSlice";
-import {CDN_URL, IMG_CDN_URL} from "../../public/common/constnant"
+import {CDN_URL, IMG_CDN_URL} from "../Common/constnant"
 import {useDispatch} from 'react-redux'
 export default ItemList = ({ item }) => {
 

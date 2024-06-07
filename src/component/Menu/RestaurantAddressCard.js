@@ -1,6 +1,6 @@
-import TrackingStepper from "../../public/common/TrackingStepper";
+import TrackingStepper from "../Common/TrackingStepper";
 import DeliveryDiningOutlinedIcon from "@mui/icons-material/DeliveryDiningOutlined";
-import StartRating from "../../public/common/StarRating";
+import StartRating from "../Common/StarRating";
 import { Step, StepLabel, Stepper } from "@mui/material";
 
 const RestaurantAddressCard = ({ restaurant }) => {

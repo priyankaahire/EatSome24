@@ -1,4 +1,4 @@
-import { APPLICATION_LOGO, LINKEDIN_PROFILE, PROFILE_NAME } from "../public/common/constnant";
+import { APPLICATION_LOGO, LINKEDIN_PROFILE, PROFILE_NAME } from "./Common/constnant";
 
 // Footer component for footer section
 const FooterComponent = () => {

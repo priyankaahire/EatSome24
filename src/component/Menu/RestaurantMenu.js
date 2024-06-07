@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { CardShimmer } from "../Shimmer";
+import { CardShimmer } from "./Shimmer";
 import { useParams } from "react-router-dom";
 import useRestaurantMenu from "../../Hooks/useRestaturantMenu";
 import RestaurantCategory from "./RestaurantCategory";
 import {
-  IMG_CDN_URL,
   ITEM_IMG_CDN_URL,
   swiggy_menu_api_URL,
-} from "../../public/common/constnant";
+} from "../Common/constnant";
 import StarIcon from "@mui/icons-material/Star";
 import OfferCard from "./OfferCard";
 import RestaurantAddressCard from "./RestaurantAddressCard";
+import ScrollLeftRight from "../Common/ScrollLeftRight";
+import UseScrollLeftRight from "../../Hooks/useHorizontalScroll";
+
 //% Make the server call and get the real data of resaturan data we need useStae hook
 export const RestaurantMenuComponent = () => {
+  const {scrollContainerRef, onScroll, onScrollRight, onScrollLeft} = UseScrollLeftRight();
+
   const { resId } = useParams();
-  //% Will create the Restaurant menu Hook to fecth the data (Now this component is  Single Responsibility Principle) because this component only displaying the data it don'r care about how and from where fetch the data
+  // % Will create the Restaurant menu Hook to fecth the data (Now this component is  Single Responsibility Principle) because this component only displaying the data it don'r care about how and from where fetch the data
   const [restaurant, menuItems, toPicks, offerDetails] = useRestaurantMenu(
     resId,
     swiggy_menu_api_URL
@@ -25,17 +29,9 @@ export const RestaurantMenuComponent = () => {
   };
   //! Shimmer logic should be first because, By default resInfo is null then we will faced the issue for de-structure
   if (restaurant == null) return <CardShimmer />;
-  //restaurant: costForTwo
-  // :
-  // "12000"
-  // costForTwoMessage
-  // :
-  // "₹120 for two"
-
-
   return (
     <>
-      <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]">
+      <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]" key={'kkk'}>
         <div className="restuarant-menu">
           {/* Menu Info */}
           <div className="restuarant-summary flex justify-center items-center bg-black text-white h-[200px]">
@@ -70,11 +66,14 @@ export const RestaurantMenuComponent = () => {
           <div className="offers-container flex justify-center items-center">
             <div className="offers-content w-[850px] mt-8">
               <div className="memu-title flex justify-between p-3">
-                <h3 className="font-extrabold text-lg">Deals for you</h3>
-                <span>&darr;</span>
+               <ScrollLeftRight
+               title={`Deals for you`}
+               onScrollLeft={()=>onScroll('left')}
+               onScrollRight={()=>onScroll('right')}
+               />
               </div>
               <div className="offer-item-list">
-                <div className="flex overflow-scroll">
+                <div className="flex overflow-scroll" ref={scrollContainerRef}>
                   {offerDetails.map((offer, index) => (
                     <>
                     <OfferCard key={index} offer={offer} />

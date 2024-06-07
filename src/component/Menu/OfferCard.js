@@ -1,4 +1,4 @@
-import { IMG_CDN_URL } from "../../public/common/constnant";
+import { IMG_CDN_URL } from "../Common/constnant";
 
 const OfferCard = ({ offer }) => {
   const { header, offerLogo, couponCode } = offer?.info;

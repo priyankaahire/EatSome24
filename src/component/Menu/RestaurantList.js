@@ -1,8 +1,10 @@
 import RestaurantCardComponent from "./RestaurantCard";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../../Hooks/useOnlineStatus";
+import { Button } from "@mui/material";
+import { ArrowDownwardOutlined, ArrowDownwardRounded } from "@mui/icons-material";
 
-export const RestaurantListComponent = ({filteredRestaurantData}) => {
+export const RestaurantListComponent = ({filteredRestaurantData, onShowMoreClick}) => {
   const onlineStatus = useOnlineStatus();
   const ResturantCardPromoted = withPromotedLabel(RestaurantCardComponent);
   //* As in when page load called the data and fill the page
@@ -31,21 +33,46 @@ export const RestaurantListComponent = ({filteredRestaurantData}) => {
   //! eraly return
   if (!filteredRestaurantData) return null;
   return (
-     
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {filteredRestaurantData?.map((restaurant) => {
-            return (
-              <Link className="relative"
-                key={restaurant.info.id}
-                to={"/restaurant-details/" + restaurant.info.id}
+    <>
+            <div className="memu-title flex justify-between p-3">
+              <h3 className="font-extrabold text-lg">
+                Restaurants with online food delivery in Pune
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 my-2">
+              {filteredRestaurantData?.map((restaurant) => {
+                return (
+                  <Link className="relative"
+                    key={restaurant.info.id}
+                    to={"/restaurant-details/" + restaurant.info.id}
+                  >
+                    {restaurant?.info?.id ? <ResturantCardPromoted resData={restaurant.info} /> : (
+                      <RestaurantCardComponent {...restaurant.info} />
+                    )}
+                  </Link>
+                );
+              })}
+           </div>
+            <div className="showmore-btn flex justify-center w-full mx-auto my-8 max-w-[19.5rem]">
+              <Button
+                style={{
+                  fontweight: 700,
+                  fontSize: "16px",
+                  textTransform: "capitalize",
+                  width: "100%",
+                  borderRadius: "12PX",
+                  padding: "16px",
+                  background: "#fff",
+                  color: "black",
+                }}
+                variant="contained"
+                endIcon={<ArrowDownwardRounded />}
+                onClick={onShowMoreClick}
               >
-                {restaurant?.info?.id ? <ResturantCardPromoted resData={restaurant.info} /> : (
-                  <RestaurantCardComponent {...restaurant.info} />
-                )}
-              </Link>
-            );
-          })}
-        </div>
+                Show more
+              </Button>
+            </div>
+    </>
     
   );
 };

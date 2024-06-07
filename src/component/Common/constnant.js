@@ -35,3 +35,5 @@ export const MENU_TYPE_KEY = 'type.googleapis.com/swiggy.presentation.food.v2.It
 export const RESTAURANT_TYPE_KEY = 'type.googleapis.com/swiggy.presentation.food.v2.Restaurant'
 export const OFFER_KEY1 = 'type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget';
 export const OFFER_KEY2 = 'type.googleapis.com/swiggy.presentation.food.v2.OfferInfoWithStyle'
+export const WHAT_IN_YOUR_MIND = "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget";
+export const TOP_RESTAURANT = "type.googleapis.com/swiggy.gandalf.widgets.v2.GridWidget"

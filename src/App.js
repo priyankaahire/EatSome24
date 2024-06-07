@@ -5,20 +5,18 @@ import ReactDOM from 'react-dom/client';
 
 import HeaderComponent from './component/Header'; 
 import FooterComponent from './component/Footer'
-import {RouterProvider, createBrowserRouter, Outlet, useOutletContext} from "react-router-dom"
+import {RouterProvider, createBrowserRouter, Outlet} from "react-router-dom"
 import { ContactComponent } from './component/Contact';
-import { ErrorComponent } from './component/Error';
+import { ErrorComponent } from './component/Common/Error';
 import { RestaurantMenuComponent } from './component/Menu/RestaurantMenu';
-import {HomeProvider} from './contexts/HomeContext'
 import {Provider} from 'react-redux'; //It is Bride btween app and redux
 import appStore from './utils/appStore';
-import CartComponent from './component/Cart';
+import CartComponent from './component/Cart/Cart';
 import MainComponent from './component/Main';
-import LoginComponent from './component/Login';
+import LoginComponent from './component/Profile/Login';
 
 //% Using lazy i will call my Grocery on demand i will call this
 //% lazy: come with callback param adn it use import function with path as value
-const Grocery = lazy(() => import('./component/Grocery'))
 const About   = lazy(() => import("./component/About"))
 
 const AppLayout = () =>{
@@ -83,14 +81,8 @@ const appRouter = createBrowserRouter([
                 path:'login',
                 element:<LoginComponent />
             },
-            {
-                path:'/grocery',
-                element:(
-                    <Suspense fallback={<h1>Loading....</h1>}>
-                        <Grocery />
-                    </Suspense>
-                )
-            }
+            
+            
         ],
         errorElement:<ErrorComponent />
     },

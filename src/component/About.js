@@ -1,6 +1,5 @@
 import useLoginStorage from "../Hooks/useLoginStorage";
-import User from "./User";
-import UserClass from "./UserClass";
+import User from "./Profile/User";
 import React from "react";
 
 // export const AboutComponent = () => {

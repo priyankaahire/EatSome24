@@ -1,5 +1,5 @@
-import { clearCart } from "../utils/cartSlice"
-import ItemList from "./Menu/ItemList"
+import { clearCart } from "../../utils/cartSlice"
+import ItemList from "../Menu/ItemList"
 import {useDispatch} from 'react-redux'
 
 const CartComponent = () => {
