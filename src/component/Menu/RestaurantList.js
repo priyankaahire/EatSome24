@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../../Hooks/useOnlineStatus";
 import { Button } from "@mui/material";
 import { ArrowDownwardOutlined, ArrowDownwardRounded } from "@mui/icons-material";
+import React from "react";
 
 export const RestaurantListComponent = ({filteredRestaurantData, onShowMoreClick}) => {
   const onlineStatus = useOnlineStatus();
@@ -40,14 +41,14 @@ export const RestaurantListComponent = ({filteredRestaurantData, onShowMoreClick
               </h3>
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 my-2">
-              {filteredRestaurantData?.map((restaurant) => {
+              {filteredRestaurantData?.map((restaurant, index) => {
                 return (
                   <Link className="relative"
                     key={restaurant.info.id}
                     to={"/restaurant-details/" + restaurant.info.id}
                   >
-                    {restaurant?.info?.id ? <ResturantCardPromoted resData={restaurant.info} /> : (
-                      <RestaurantCardComponent {...restaurant.info} />
+                    {restaurant?.info?.id ? <ResturantCardPromoted  resData={restaurant.info} /> : (
+                      <RestaurantCardComponent  {...restaurant.info} />
                     )}
                   </Link>
                 );
@@ -55,6 +56,7 @@ export const RestaurantListComponent = ({filteredRestaurantData, onShowMoreClick
            </div>
             <div className="showmore-btn flex justify-center w-full mx-auto my-8 max-w-[19.5rem]">
               <Button
+              key={`showmorebtn-index`}
                 style={{
                   fontweight: 700,
                   fontSize: "16px",
@@ -84,10 +86,10 @@ export const withPromotedLabel = (RestaurantCard) => {
   //props basically received the props which we passed in resData and same data we have to passed to as props to card
   const RestaurentCardPromtoted = (props) => {
     return (
-      <>
+      <span >
        <label className="absolute bg-black text-white rounded-sm text-xs capitalize p-1 h-auto">Promoted</label>
         <RestaurantCardComponent {...props?.resData} />
-      </>
+      </span>
     )
   };
   return RestaurentCardPromtoted;

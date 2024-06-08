@@ -31,7 +31,7 @@ export const RestaurantMenuComponent = () => {
   if (restaurant == null) return <CardShimmer />;
   return (
     <>
-      <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]" key={'kkk'}>
+      <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]" key={'restaurant-menu-inde'}>
         <div className="restuarant-menu">
           {/* Menu Info */}
           <div className="restuarant-summary flex justify-center items-center bg-black text-white h-[200px]">
@@ -75,9 +75,7 @@ export const RestaurantMenuComponent = () => {
               <div className="offer-item-list">
                 <div className="flex overflow-scroll" ref={scrollContainerRef}>
                   {offerDetails.map((offer, index) => (
-                    <>
                     <OfferCard key={index} offer={offer} />
-                    </>
                   ))}
                 </div>
               </div>
@@ -116,14 +114,12 @@ export const RestaurantMenuComponent = () => {
               </div>
               <div className="menu-item-list">
                 {menuItems.map((category, index) => (
-                  <>
                     <RestaurantCategory
                       key={index}
                       item={category}
                       showItems={index === showIndex ? true : false}
                       setShowIndex={() => setShowIndex(index)}
                     />
-                  </>
                 ))}
               </div>
             </div>

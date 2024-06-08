@@ -78,9 +78,9 @@ const MainComponent = () => {
       )}
       {/* What in Your mind*/}
       {whatInYourMindItem &&  whatInYourMindItem.length > 0 &&
-        <div className="menu-container flex justify-center items-center mt-4">
+        <div className="menu-container flex justify-center items-center mt-4" >
          <div className="menu-content w-[85%] mt-8">
-            <WhatInYourMind items={whatInYourMindItem} key={'fgh'}/>
+            <WhatInYourMind items={whatInYourMindItem}  />
          </div>
        </div>
       }
@@ -109,7 +109,7 @@ const MainComponent = () => {
             }}
           >
             <RestaurantListComponent
-            key={`hhjj`}
+              key={`restaurant-list-index`}
               onShowMoreClick={handleShowMore}
               filteredRestaurantData={
                 filteredRestaurants === null

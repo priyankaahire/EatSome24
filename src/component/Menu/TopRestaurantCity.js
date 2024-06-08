@@ -35,7 +35,7 @@ const TopRestaurantCity = ({ items }) => {
                 return (
                   <Link
                     className="relative w-60 mx-2 my-2"
-                    key={restaurant.info.id}
+                    key={`top-${restaurant.info.id}`}
                     to={"/restaurant-details/" + restaurant.info.id}
                   >
                     {restaurant?.info?.id ? (

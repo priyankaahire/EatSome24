@@ -15,15 +15,15 @@ const WhatInYourMind = ({items}) => {
           <div className="offer-item-list">
             <div className="flex overflow-scroll" ref={scrollContainerRef}>
               {items.map((item, index) => (
-                <>
-                    <div className="pt-0 pl-4 pb-0 pr-0 w-full" key={index}>
+                
+                    <div className="pt-0 pl-4 pb-0 pr-0 w-full" key={`whatinyourmind-item-${index}`}>
                         <div className="relative">
                             <div className="flex w-36 h-[180px]">
                                 <img src={ITEM_IMG_CDN_URL + item?.imageId} alt=""></img>
                             </div>
                         </div>
                     </div>
-                </>
+               
               ))}
             </div>
           </div>

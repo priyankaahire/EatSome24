@@ -9,8 +9,9 @@ const ScrollLeftRight = ({onScrollLeft, onScrollRight, title}) => {
          <h3 className="font-extrabold text-lg">{title}</h3>
           <div className="">
             <IconButton
+            style={{marginRight:"12px"}}
               aria-label="backward"
-              className="border border-gray-600"
+              className="border border-gray-600 mr-3 hover:bg-slate-600"
               size="small"
               onClick={onScrollLeft}
             >
