@@ -18,7 +18,7 @@ const RestaurantCardComponent = ({
   const { slaString, lastMileTravelString } = sla;
   const {header, subHeader} = aggregatedDiscountInfoV3 ? aggregatedDiscountInfoV3 : {}
   return (
-      <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+      <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white ">
         <div className="">
           <div className="bg-gray-300">
             {" "}

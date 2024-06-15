@@ -1,6 +1,6 @@
 import { clearCart } from "../../utils/cartSlice"
-import ItemList from "../Menu/ItemList"
-import {useDispatch} from 'react-redux'
+import Inventory from "./Inventory"
+import {useDispatch, useSelector} from 'react-redux'
 
 const CartComponent = () => {
 //We have to subscribe our store
@@ -9,7 +9,11 @@ const dispatchCart = useDispatch()
 const handleClearCart = () =>{
     dispatchCart(clearCart())
 }
-const cartItems = useSelector((store) => store.cart.items);
+//Using use useSekector Hook for subscribe the store
+const cartItems =  useSelector((store) =>{
+    console.log(store)
+    return store.cart.items
+  } );
 
 return (
 <div className="text-center m-4 p-4">
@@ -20,7 +24,7 @@ return (
         (
             <h1>Your shopping bag is empty</h1>
         )}
-        <ItemList items={cartItems} />
+        <Inventory items={cartItems} />
     </div>
 </div>
 )

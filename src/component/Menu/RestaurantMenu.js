@@ -30,8 +30,7 @@ export const RestaurantMenuComponent = () => {
   //! Shimmer logic should be first because, By default resInfo is null then we will faced the issue for de-structure
   if (restaurant == null) return <CardShimmer />;
   return (
-    <>
-      <main className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]" key={'restaurant-menu-inde'}>
+      <div className="main-container flex-1 overflow-y-auto mt-24 min-h-[87vh]" key={'restaurant-menu-inde'}>
         <div className="restuarant-menu">
           {/* Menu Info */}
           <div className="restuarant-summary flex justify-center items-center bg-black text-white h-[200px]">
@@ -110,12 +109,12 @@ export const RestaurantMenuComponent = () => {
                 <h3 className="font-extrabold text-lg">
                   Recommended ({menuItems?.length})
                 </h3>
-                <span>&darr;</span>
+                <span className="arrow-down">&darr;</span>
               </div>
               <div className="menu-item-list">
                 {menuItems.map((category, index) => (
                     <RestaurantCategory
-                      key={index}
+                      key={'restaurant-category-'+index}
                       item={category}
                       showItems={index === showIndex ? true : false}
                       setShowIndex={() => setShowIndex(index)}
@@ -125,7 +124,6 @@ export const RestaurantMenuComponent = () => {
             </div>
           </div>
         </div>
-      </main>
-    </>
+      </div>
   );
 };

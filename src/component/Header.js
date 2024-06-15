@@ -19,7 +19,8 @@ const HeaderComponent = ({ onSearch }) => {
   const onlineStatus = useOnlineStatus();
   //* Sunscribing to the store using the selector
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(loggedInUser)
+  const cartCount = Object.keys(cartItems).length
+  console.log(cartItems)
   //% But if I want to navigate without reload used "Link" component
 
   return (
@@ -41,13 +42,12 @@ const HeaderComponent = ({ onSearch }) => {
               </Link>
             </li>
             <li className="p-3">
-              <Link className="hover:text-primary" to="/cart"><ShoppingCartOutlined /> Cart {cartItems ? `(${cartItems})` : null}</Link>
+              <Link className="hover:text-primary" to="/cart"><ShoppingCartOutlined /> Cart {cartItems && cartCount > 0 ? `(${cartCount})` : null}</Link>
             </li>
             <li className="p-3">
               {loggedInUser ?   
               <Avatar title={loggedInUser} className="text-white" sx={{ width: 40, height: 40}}>{loggedInUser.charAt(0).charAt(0).toUpperCase() + loggedInUser.charAt(0).slice(1)}</Avatar>
-              :<><Link className="hover:text-primary"  to='/login'><Person2Outlined />Sign In</Link>
-              {/* <span className={onlineStatus ? "text-green" : "text-red"}>{" "}●</span>*/}</>
+              :<><Link className="hover:text-primary"  to='/login'><Person2Outlined />Sign In</Link></>
               }
             </li>
           </ul>

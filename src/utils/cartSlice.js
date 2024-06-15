@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
-  name: "Cart",
+  name: "cart",
   initialState: {
     items: [],
   },
@@ -23,7 +23,17 @@ const cartSlice = createSlice({
         //~@ It is using immer js redux use this finding 
         //~@ it takes the current state and take the old state and give new state with diff of that state
         //~@ It is not changing the old state it is giving the new state
-        state.items.push(action.payload);
+        const {id} = action.payload;
+         if(state.items[id]) {
+          state.items[id].count += 1;
+         } else {
+          state.items[id] = {...action.payload, count:1}
+         }
+        // return {
+        //   ...state,
+        //   items: [...state.items, action.payload]
+        // };
+      // state.items.push(action.payload);
       },
       //Orinal state state=['Pizza', 'Burger']
       clearCart: (state, action) => {
@@ -38,9 +48,15 @@ const cartSlice = createSlice({
         return {items: []} //or state.items.length = 0
       },
       removeItem: (state, action) => {
-
-        state.items.pop();
-      },
+        const {id} = action.payload
+        if(state.items[id]) {
+          state.items[id].count -= 1;
+         } else {
+          state.items.pop();
+         // state.items[id] = {...action.payload, count:0}
+         }
+        
+      }
     },
 });
 

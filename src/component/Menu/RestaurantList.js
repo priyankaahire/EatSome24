@@ -43,12 +43,12 @@ export const RestaurantListComponent = ({filteredRestaurantData, onShowMoreClick
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 my-2">
               {filteredRestaurantData?.map((restaurant, index) => {
                 return (
-                  <Link className="relative"
+                  <Link className="relative "
                     key={restaurant.info.id}
                     to={"/restaurant-details/" + restaurant.info.id}
                   >
-                    {restaurant?.info?.id ? <ResturantCardPromoted  resData={restaurant.info} /> : (
-                      <RestaurantCardComponent  {...restaurant.info} />
+                    {restaurant?.info?.id ? <ResturantCardPromoted  key={'index-'+restaurant.info.id} resData={restaurant.info} /> : (
+                      <RestaurantCardComponent key={'index-'+restaurant.info.id}  {...restaurant.info} />
                     )}
                   </Link>
                 );

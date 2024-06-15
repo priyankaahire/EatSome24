@@ -11,7 +11,6 @@ const MainComponent = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState(null);
   const [searchText, setSearchText] = useState(""); //# TO CREATE THE STATE VARIBALE WITH DEFAULT VALUE
   const [errorMessage, setErrorMessage] = useState("");
-  const scrollContainerRef = useRef(null);
 
   const filterData = (searchText, data) => {
     const filResData = data.filter((resaturant) =>
@@ -80,7 +79,7 @@ const MainComponent = () => {
       {whatInYourMindItem &&  whatInYourMindItem.length > 0 &&
         <div className="menu-container flex justify-center items-center mt-4" >
          <div className="menu-content w-[85%] mt-8">
-            <WhatInYourMind items={whatInYourMindItem}  />
+            <WhatInYourMind key={'whatinmind-index'} items={whatInYourMindItem}  />
          </div>
        </div>
       }

@@ -1,9 +1,9 @@
 
 // import { IMG_CDN_URL} from "../utils/constnant";
 import { addItem } from "../../utils/cartSlice";
-import {CDN_URL, IMG_CDN_URL} from "../Common/constnant"
+import {IMG_CDN_URL} from "../Common/constnant"
 import {useDispatch} from 'react-redux'
-export default ItemList = ({ item }) => {
+export default Inventory = ({ items }) => {
 
   const dispatchCart = useDispatch();
   const handleAddItem = (item) => {
@@ -12,15 +12,15 @@ export default ItemList = ({ item }) => {
   };
   return (
     <div>
-      {/* {items.map((item) => ( */}
-        <div className="flex justify-between text-left" key={item.id}>
+      {items.map((item) => (
+        <div className="flex justify-between text-left" key={item?.id}>
           <div className="w-9/12">
             <div className="py-2">
-              <span>{item.name}</span>
+              <span>{item?.name}</span>
               <span>
                 - ₹
                 {item?.price
-                  ? item.price / 100
+                  ? item?.price / 100
                   : item?.defaultPrice / 100}
               </span>
             </div>
@@ -31,13 +31,13 @@ export default ItemList = ({ item }) => {
               <button className="" onClick={() => handleAddItem(item)}>Add +</button>
             </div>
             <img
-              src={IMG_CDN_URL + item.imageId}
+              src={IMG_CDN_URL + item?.imageId}
               className="w-full"
-              alt={item.imageId}
+              alt={item?.imageId}
             />
           </div>
         </div>
-      {/* ))} */}
+      ))}
     </div>
   );
 };
